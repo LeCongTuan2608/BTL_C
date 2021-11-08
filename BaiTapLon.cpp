@@ -2,21 +2,28 @@
 using namespace std;
 
 
-// ==================class 1 sinh vien======================
+//==================== class co so sinh vien ======================
 class SinhVien{
+	protected:
+		
+	public:
+		virtual void Nhap() = 0;
+		virtual void Xuat() = 0;
+};
+
+// ==================class 1 sinh vien======================
+class ThongTin: public SinhVien{
 	private:
 		string HoTen, MSSV, GioiTinh, QueQuan;
-		int Ngay, Thang, Nam;
+		int Ngay, Thang, Nam;	
 	public:
-		SinhVien();
-		SinhVien(string HoTen, string MSSV, string GioiTinh, string QueQuan, int Ngay, int Thang, int Nam);
-		~SinhVien();	
+		ThongTin();
+		~ThongTin();
 		void Nhap();
 		void Xuat();
 };
-
-// ham tao mac dinh
-SinhVien::SinhVien(){
+// Ham tao
+ThongTin::ThongTin(){
 	HoTen = "";
 	MSSV = "";
 	GioiTinh = "";
@@ -25,24 +32,13 @@ SinhVien::SinhVien(){
 	Thang = 0;
 	Nam = 0;	
 }
-
-//ham tao day du tham so
-SinhVien::SinhVien(string HoTen, string MSSV, string GioiTinh, string QueQuan, int Ngay, int Thang, int Nam){
-	this->HoTen = HoTen;
-	this->MSSV = MSSV;
-	this->GioiTinh = GioiTinh;
-	this->QueQuan = QueQuan;
-	this->Ngay = Ngay;
-	this->Thang = Thang;
-	this->Nam = Nam;
-}
-//ham huy
-SinhVien::~SinhVien(){
+// ham huy
+ThongTin::~ThongTin(){
 	
 }
 
 //ham nhap 1 sinh vien
-void SinhVien::Nhap(){
+void ThongTin::Nhap(){
 	cout <<"Ho va ten: ";
 	getline(cin, HoTen);
 	cout <<"Ma so sinh vien: ";
@@ -51,168 +47,181 @@ void SinhVien::Nhap(){
 	getline(cin, GioiTinh);
 	cout <<"Que quan: ";
 	getline(cin, QueQuan);
-	cout <<"Ngay sinh: ";
+	cout <<"Ngay sinh: "<<endl;
 	cout <<"Ngay ";
 	cin >> Ngay;
 	cout <<"Thang ";
 	cin >> Thang;
 	cout <<"Nam ";
 	cin >> Nam;
-}
 
+}
+//================================ class thong tin =========================
 //ham xuat 1 sinh vien
-void SinhVien::Xuat(){
-	cout <<"Ho va ten: "<<HoTen<<endl;
+void ThongTin::Xuat(){
+	cout <<"\nHo va ten: "<<HoTen<<endl;
 	cout <<"Ma so sinh vien: "<<MSSV<<endl;
 	cout <<"Gioi tinh: "<< GioiTinh <<endl;
 	cout <<"Que quan: "<< QueQuan <<endl;
-	cout <<"Ngay sinh: "<<Ngay<<" "<<Thang<<" "<<Nam<<endl;
+	cout <<"Ngay sinh: "<<Ngay<<"-"<<Thang<<"-"<<Nam<<endl;
+
 }
-
-
-//============================class diem ============================
-class Diem:public SinhVien{
+//=========================== class diem so =======================
+class DiemSo:public SinhVien{
 	private:
 		float DTB, DRL, DC;
 	public:
-		Diem(float DTB, float DRL, float DC);
-		~Diem();
+		DiemSo();
+		~DiemSo();
 		void Nhap();
 		void Xuat();
+		
 };
-
-//ham tao day du tham so
-Diem::Diem(float DTB, float DRL, float DC){
-	this->DTB = DTB;
-	this->DRL = DRL;
-	this->DC = DC;
+//ham tao 
+DiemSo::DiemSo(){
+	DTB = 0;
+	DRL = 0;
+	DC = 0;
 }
-
 //ham huy
-Diem::~Diem(){
+DiemSo::~DiemSo(){
 	
 }
 
 //ham nhap diem 1 sinh vien
-void Diem::Nhap(){
-	SinhVien::Nhap();
+void DiemSo::Nhap(){
 	cout <<"Diem trung binh: ";
 	cin >> DTB;
 	cout <<"Diem ren luyen: ";
 	cin >> DRL;
 	cout <<"Diem cong: ";
 	cin >> DC;
+	cin.ignore();
 	
 }
 
 //ham xuat diem 1 sinh vien
-void Diem::Xuat(){
-	SinhVien::Xuat();
+void DiemSo::Xuat(){
 	cout <<"Diem trung binh: "<<DTB<<endl;
 	cout <<"Diem ren luyen: "<<DRL<<endl;	
 	cout <<"Diem cong: "<<DC<<endl;	
 }
-
-
-
-//=============================class node ==============================
-class Node:public SinhVien{	
+//===================class nganh ============================
+class NGANH: public SinhVien{
 	private:
-		SinhVien sv;
-		Node *next;	
+		string Nganh;
+		int Khoa;
 	public:
-		Node(SinhVien sv);
-		~Node();
-		Node *getnode(); //tra ve Node *next
-		void In();
+		NGANH();
+		~NGANH();
+		void Nhap();
+		void Xuat();	
 };
-
-//ham tao du lieu 
-Node::Node(SinhVien sv){
-	this->sv = sv;
-
+// ham tao
+NGANH::NGANH(){
+	Nganh = " ";
+	Khoa = 0;
 }
-
-//tra ve Node *next
-Node *Node::getnode(){
-	return this->next;
-}
-
-
-//ham nhap du lieu sinh vien vao node
-void Node::In(){
-	this->SinhVien::Nhap();
+// ham huy
+NGANH::~NGANH(){
 	
 }
+// ham nhap nganh vs khoa
+void NGANH::Nhap(){
+	cout <<"Nganh hoc: ";
+	getline(cin, Nganh);
+	cout <<"Khoa: ";
+	cin >> Khoa;
+}
+// ham xuat nganh vs khoa
+void NGANH::Xuat(){
+	cout <<"Nganh: "<<Nganh<<endl;
+	cout <<"Khoa: "<<Khoa<<endl;
+}
 
+//=============================class node ==============================
+class Node{
+	public:
+		int data;
+		Node *next;	
+};
 
 // ====================class danh sach =================================
-class List:public Node{
+class SList{
 	private:
 		Node *Head;
 		Node *Tail;
 		int size;
 	public:
-		Slist();
-		Node* CreateNode(SinhVien sv);
-		void AddSV(SinhVien sv);
-		void DeleteSV(SinhVien sv);
-		void SearchName(SinhVien sv);
-		void SearchID(SinhVien sv);
+		SList();
+		~SList();
+		Node *CreateNode(int data);
+		void AddSV(int data);
+		void DeleteSV(int data);
+		void SearchName(int data);
+		void SearchID(int data);
 		void SapXepDTB();
-		void XuatDS(SinhVien sv);			
+		void XuatDS(int data);			
 };
 
 //ham tao mac dinh
-List::Slist(){
+SList::SList(){
 	Head = NULL;
 	Tail = NULL;
 	size = 0;
 }
 
 //ham tao ra 1 node
-Node* List::CreateNode(SinhVien sv){
+Node* SList::CreateNode(int data){
 
 }
 
 //ham them 1 sinh vien
-void List::AddSV(SinhVien sv){
+void SList::AddSV(int data){
 	
 }
 
 //ham xoa 1 sinh vien
-void List::DeleteSV(SinhVien sv){
+void SList::DeleteSV(int data){
 	
 }
 
 //ham tim kiem sinh vien theo ten
-void List::SearchName(SinhVien sv){
+void SList::SearchName(int data){
 	
 }
 
 //ham tim kiem sinh vien theo mssv
-void List::SearchID(SinhVien sv){
+void SList::SearchID(int data){
 	
 }
 
 //ham sap xep sinh vien theo diem trung binh
-void List::SapXepDTB(){
+void SList::SapXepDTB(){
 	
 }
 
 //ham xuat ra danh sach sinh vien
-void List::XuatDS(SinhVien sv){
+void SList::XuatDS(int data){
 	
 }
-
 
 
 //========================== ham main ============================
 
 int main(){
+	ThongTin tt;
+	DiemSo diem;
+	NGANH nganh;
 	
+	SinhVien *sv= &tt;
+	sv->Nhap();
+	diem.Nhap();
+	nganh.Nhap();
+
+	sv->Xuat();
+	diem.Xuat();
+	nganh.Xuat();
+
+	return 0;
 }
-	
-	
-
-
