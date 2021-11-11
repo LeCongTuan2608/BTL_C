@@ -1,3 +1,4 @@
+
 #include<iostream>
 using namespace std;
 
@@ -122,7 +123,7 @@ class ThongTin: public SinhVien{
 	public:
 		ThongTin();
 		~ThongTin();
-		
+		string getHoTen();
 		DiemSo getdiemso();
 		NGANH getnganh();
 		
@@ -145,6 +146,10 @@ ThongTin::~ThongTin(){
 	
 }
 
+//return ve ho ten
+string ThongTin::getHoTen(){
+	return HoTen;
+}
 // return ve class diem so
 DiemSo ThongTin::getdiemso(){
 	return diemso;
@@ -160,7 +165,6 @@ NGANH ThongTin::getnganh(){
 //ham nhap thong tin 1 sinh vien
 void ThongTin::Nhap(){
 	cout <<"Ho va ten: ";
-	cin.ignore();
 	getline(cin, HoTen);
 	cout <<"Ma so sinh vien: ";
 	getline(cin, MSSV);
@@ -194,15 +198,17 @@ void ThongTin::Xuat(){
 
 //============================= class node ==============================
 class Node{
-	public:
+	private:
 		ThongTin data;
 		Node *next;
+	public:
+		friend class SList;
 };
 
 
 // ==================== class danh sach =================================
 class SList{
-	public:
+	private:
 		Node *Head;
 		Node *Tail;
 		int size;
@@ -211,13 +217,12 @@ class SList{
 		~SList();
 		
 		Node *CreateNode(ThongTin sv);
-		void AddFirst(ThongTin sv);
-		void AddLast(ThongTin sv);
-		void DeleteSV(ThongTin sv);
-		void SearchName(ThongTin sv);
-		void SearchID(ThongTin sv);
+		void AddFirst();
+		void AddLast();
+		void DeleteSV();
+		void SearchName();
+		void SearchID();
 		void SapXepDTB();
-		void NhapDS(ThongTin &sv);
 		void XuatDS();	
 				
 };
@@ -236,22 +241,28 @@ Node* SList::CreateNode(ThongTin sv){
 	p->data = sv;
 	p->next = NULL;
 	return p;
-}
-
-//ham them 1 sinh vien vao dau danh sach
-void SList::AddFirst(ThongTin sv){
-	Node *p = CreateNode(sv);
-	p->next = Head;
-	if(size == 0)
-		Tail = p;
 	size++;
 }
 
+//ham them 1 sinh vien vao dau danh sach
+void SList::AddFirst(){
+	ThongTin sv;
+	cout <<"Nhap thong tin sinh vien";
+	sv.Nhap();
+	Node *p = CreateNode(sv);
+	p->next = Head;
+	if(Head == Tail && Head == NULL)
+		Tail = p;
+
+}
+
 //ham them 1 sinh vien vao cuoi danh sach
-void SList::AddLast(ThongTin sv){
+void SList::AddLast(){
+	ThongTin sv;
+	cout <<"Nhap thong tin sinh vien"<<endl;
+	sv.Nhap();
 	Node*p = CreateNode(sv);
-	
-	if(size == 0){
+	if(Head == Tail && Head == NULL){
 		Tail = Head = p;
 		Tail->next = NULL;
 		Head->next = NULL;
@@ -260,21 +271,29 @@ void SList::AddLast(ThongTin sv){
 		Tail->next = p;
 		Tail =p;
 	}
-	size++;
 }
 
 //ham xoa 1 sinh vien
-void SList::DeleteSV(ThongTin sv){
-	
+void SList::DeleteSV(){
+	int pos;
+	if(Head == Tail && Head == NULL){
+		cout <<"Danh sach rong, khong the xoa"<<endl;
+		return;
+	}
+	cout <<"Nhap vi tri can xoa: ";
+	cin >> pos;
+	if(size < pos)
+		cout <<"Ngoai pham vi danh sach"<<endl;
+	// dang lam cho nay====================================================
 }
 
 //ham tim kiem sinh vien theo ten
-void SList::SearchName(ThongTin sv){
-	
+void SList::SearchName(){
+
 }
 
 //ham tim kiem sinh vien theo mssv
-void SList::SearchID(ThongTin sv){
+void SList::SearchID(){
 	
 }
 
@@ -283,51 +302,47 @@ void SList::SapXepDTB(){
 	
 }
 
-void SList::NhapDS(ThongTin &sv){
-	sv.Nhap();
-}
-
 //ham xuat ra danh sach sinh vien
 void SList::XuatDS(){
-	for(Node *t = Head; t != NULL ; t = t->next){
-		t->data.Xuat();
+	if(Head == Tail && Head == NULL){
+		cout <<"Danh sach trong, khong the hien thi"<<endl;
+	}
+	
+	for(Node *p = Head; p != NULL ; p = p->next){
+		p->data.Xuat();
 	}
 }
-
 
 //========================== ham main ============================
 
 int main(){
-	SList list ;
 	int n;
-	cout <<"So luong sinh vien can nhap: ";
-	cin >> n;
-	
-	//bo vao` vong` lap while ,, thay i<n = list.szie
-	for(int i=0; i<n;i++){
-		ThongTin sv;
-		cout <<"Sinh vien thu "<<i+1<<endl<<endl;
-		sv.Nhap();
-		list.AddLast(sv);
+	SList list ;
+	ThongTin sv;
+	while(true){
+		cout <<"======================================"<<endl;
+		cout <<"1. Nhap thong tin sv"<<endl;
+		cout <<"2. Xuat thong tin sv"<<endl;
+		cout <<"3. Xoa sinh vien"<<endl;
+		cout <<"vui long chon: ";
+		cin >>n;
+		cin.ignore();
+	switch(n){
+		case 1:
+			list.AddLast();
+			break;
+		case 2:
+			list.XuatDS(); 
+			break;
+		case 3:
+			list.DeleteSV();
+		case 4:
+			exit(0);
+			break;
 	}
-	
-		list.XuatDS();
-	
-	
-	
-	
-//	ThongTin tt;
-//	DiemSo diem;
-//	NGANH nganh;
-//	
-//	SinhVien *sv= &tt;
-//	sv->Nhap();
-//	diem.Nhap();
-//	nganh.Nhap();
-//
-//	sv->Xuat();
-//	diem.Xuat();
-//	nganh.Xuat();
-
+	}
 	return 0;
 }
+
+
+
