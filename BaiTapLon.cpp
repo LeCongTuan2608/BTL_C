@@ -205,13 +205,12 @@ class Node{
 		friend class SList;
 };
 
-
+int size = 0;
 // ==================== class danh sach =================================
 class SList{
 	private:
 		Node *Head;
 		Node *Tail;
-		int size;
 	public:
 		SList();
 		~SList();
@@ -219,11 +218,14 @@ class SList{
 		Node *CreateNode(ThongTin sv);
 		void AddFirst();
 		void AddLast();
+		void DeleteFirst();
+		void DeleteLast();
 		void DeleteSV();
 		void SearchName();
 		void SearchID();
 		void SapXepDTB();
-		void XuatDS();	
+		void XuatDS();
+		Node *Pre(Node *p);	
 				
 };
 
@@ -231,19 +233,27 @@ class SList{
 SList::SList(){
 	Head = NULL;
 	Tail = NULL;
-	size = 0;
 }
+//ham huy
 SList::~SList(){
 }
+
 //ham tao ra 1 node
 Node* SList::CreateNode(ThongTin sv){
+	size++;
 	Node* p =new Node;
 	p->data = sv;
 	p->next = NULL;
 	return p;
-	size++;
 }
-
+// ham tim node truoc node p
+Node* SList::Pre(Node *p){
+	Node *pre = Head;
+	while(pre != p){ 	// vong lap khi khi nao node pre == node p thi dung`
+		pre = pre->next;
+		return pre;
+	}
+}
 //ham them 1 sinh vien vao dau danh sach
 void SList::AddFirst(){
 	ThongTin sv;
@@ -272,10 +282,39 @@ void SList::AddLast(){
 		Tail =p;
 	}
 }
+void SList::DeleteFirst(){
+	if(size == 0)
+		cout <<"Danh sach rong, khong the xoa"<<endl;
+		return;
+	Node *p = Head;
+	Head = Head->next;
+	delete Head;
+	size--;
+	cout <<"Da xoa xong~"<<endl;
+}
+void SList::DeleteLast(){
+	if(size == 0)
+		cout <<"Danh sach rong, khong the xoa"<<endl;
+		return;
+	if(size == 1){
+		delete Head;
+		size--;
+		cout <<"Da xoa xong~"<<endl;
+		return;
+	}
+	Node *p = Pre(Tail);
+	Node *t = Tail;
+	p->next = NULL;
+	delete t;
+	size--;
+	cout <<"Da xoa xong~"<<endl;
+
+}
+
 
 //ham xoa 1 sinh vien
 void SList::DeleteSV(){
-	int pos;
+	int pos; 		// pos vi tri can xoa
 	if(Head == Tail && Head == NULL){
 		cout <<"Danh sach rong, khong the xoa"<<endl;
 		return;
@@ -284,7 +323,8 @@ void SList::DeleteSV(){
 	cin >> pos;
 	if(size < pos)
 		cout <<"Ngoai pham vi danh sach"<<endl;
-	// dang lam cho nay====================================================
+		
+//====================dang lam dong` nay`============================
 }
 
 //ham tim kiem sinh vien theo ten
@@ -335,7 +375,8 @@ int main(){
 			list.XuatDS(); 
 			break;
 		case 3:
-			list.DeleteSV();
+			list.DeleteLast();
+			break;
 		case 4:
 			exit(0);
 			break;
@@ -343,6 +384,7 @@ int main(){
 	}
 	return 0;
 }
+
 
 
 
