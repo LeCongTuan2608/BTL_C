@@ -126,6 +126,7 @@ class ThongTin: public SinhVien{
 		string getHoTen();
 		DiemSo getdiemso();
 		NGANH getnganh();
+		string getMSSV();
 		
 		void Nhap();
 		void Xuat();
@@ -159,6 +160,9 @@ DiemSo ThongTin::getdiemso(){
 // return ve class nganh
 NGANH ThongTin::getnganh(){
 	return nganh;
+}
+string ThongTin::getMSSV(){
+	return MSSV;
 }
 
 
@@ -218,8 +222,8 @@ class SList{
 		Node *CreateNode(ThongTin sv);
 		void AddFirst();
 		void AddLast();
-		void DeleteFirst();
-		void DeleteLast();
+//		void DeleteFirst();
+//		void DeleteLast();
 		void DeleteSV();
 		void SearchName();
 		void SearchID();
@@ -282,34 +286,35 @@ void SList::AddLast(){
 		Tail =p;
 	}
 }
-void SList::DeleteFirst(){
-	if(size == 0)
-		cout <<"Danh sach rong, khong the xoa"<<endl;
-		return;
-	Node *p = Head;
-	Head = Head->next;
-	delete Head;
-	size--;
-	cout <<"Da xoa xong~"<<endl;
-}
-void SList::DeleteLast(){
-	if(size == 0)
-		cout <<"Danh sach rong, khong the xoa"<<endl;
-		return;
-	if(size == 1){
-		delete Head;
-		size--;
-		cout <<"Da xoa xong~"<<endl;
-		return;
-	}
-	Node *p = Pre(Tail);
-	Node *t = Tail;
-	p->next = NULL;
-	delete t;
-	size--;
-	cout <<"Da xoa xong~"<<endl;
-
-}
+//void SList::DeleteFirst(){
+//	if(size == 0){
+//		cout <<"Danh sach rong, khong the xoa"<<endl;
+//		return;
+//	}
+//	Node *p = Head;
+//	Head = Head->next;
+//	delete Head;
+//	size--;
+//	cout <<"Da xoa xong~"<<endl;
+//}
+//void SList::DeleteLast(){
+//	if(size == 0){
+//		cout <<"Danh sach rong, khong the xoa"<<endl;
+//		return;
+//	}
+//	if(size == 1){
+//		delete Head;
+//		size--;
+//		cout <<"Da xoa xong~"<<endl;
+//		return;
+//	}
+//	Node *p = Pre(Tail);
+//	Node *t = Tail;
+//	p->next = NULL;
+//	delete t;
+//	size--;
+//	cout <<"Da xoa xong~"<<endl;
+//}
 
 
 //ham xoa 1 sinh vien
@@ -324,17 +329,58 @@ void SList::DeleteSV(){
 	if(size < pos)
 		cout <<"Ngoai pham vi danh sach"<<endl;
 		
+	if( pos == 1 ){
+		Node *p = Head;
+		Head = Head->next;
+		delete Head;
+		size--;
+		cout <<"Da xoa xong~"<<endl;
+		return;
+	}
+	if( pos == size ){
+		Node *p = Pre(Tail);
+		Node *t = Tail;
+		p->next = NULL;
+		delete t;
+		size--;
+		cout <<"Da xoa xong~"<<endl;
+	}
+	
 //====================dang lam dong` nay`============================
 }
 
 //ham tim kiem sinh vien theo ten
 void SList::SearchName(){
-
+	string x;
+	if( size == 0 ){
+		cout <<"Danh sach trong, khong the tim"<<endl;
+		return;
+	}
+	cout <<"Nhap ten can tim: ";
+	cin >> x;
+	Node *p = Head;
+	for(Node *p = Head; p != NULL; p = p->next ){
+		if( p->data.getHoTen() == x ){
+			p->data.Xuat();
+		}
+	}
 }
 
 //ham tim kiem sinh vien theo mssv
 void SList::SearchID(){
-	
+	string x;
+	if( size == 0 ){
+		cout <<"Danh sach trong, khong the tim"<<endl;
+		return;
+	}
+	cout <<"Nhap ma so sinh vien can tim: ";
+	cin >> x;
+	Node *p = Head;
+	for(Node *p = Head; p != NULL; p = p->next ){
+		if( p->data.getMSSV()== x ){
+			p->data.Xuat();
+		}
+	}
 }
 
 //ham sap xep sinh vien theo diem trung binh
@@ -359,14 +405,19 @@ int main(){
 	int n;
 	SList list ;
 	ThongTin sv;
+	
 	while(true){
 		cout <<"======================================"<<endl;
 		cout <<"1. Nhap thong tin sv"<<endl;
 		cout <<"2. Xuat thong tin sv"<<endl;
 		cout <<"3. Xoa sinh vien"<<endl;
+		cout <<"4. Tim sinh vien theo ten"<<endl;
+		cout <<"5. Tim sinh vien theo ID"<<endl;
+		cout <<"======================================"<<endl;
 		cout <<"vui long chon: ";
 		cin >>n;
 		cin.ignore();
+		
 	switch(n){
 		case 1:
 			list.AddLast();
@@ -375,9 +426,15 @@ int main(){
 			list.XuatDS(); 
 			break;
 		case 3:
-			list.DeleteLast();
+			list.DeleteSV();
 			break;
 		case 4:
+			list.SearchName();
+			break;
+		case 5:
+			list.SearchID();
+			break;
+		case 6:
 			exit(0);
 			break;
 	}
