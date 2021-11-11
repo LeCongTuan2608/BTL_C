@@ -1,6 +1,7 @@
-
+#include<iomanip>
 #include<iostream>
 using namespace std;
+#include<windows.h>
 
 
 //==================== class co so sinh vien ======================
@@ -126,7 +127,6 @@ class ThongTin: public SinhVien{
 		string getHoTen();
 		DiemSo getdiemso();
 		NGANH getnganh();
-		string getMSSV();
 		
 		void Nhap();
 		void Xuat();
@@ -161,9 +161,6 @@ DiemSo ThongTin::getdiemso(){
 NGANH ThongTin::getnganh(){
 	return nganh;
 }
-string ThongTin::getMSSV(){
-	return MSSV;
-}
 
 
 //ham nhap thong tin 1 sinh vien
@@ -189,7 +186,7 @@ void ThongTin::Nhap(){
 }
 //ham xuat thong tin 1 sinh vien
 void ThongTin::Xuat(){
-	cout <<"\nHo va ten: "<<HoTen<<endl;
+	cout <<left<<setw(30)<<"\nHo va ten: "<<HoTen<<endl;
 	cout <<"Ma so sinh vien: "<<MSSV<<endl;
 	cout <<"Gioi tinh: "<< GioiTinh <<endl;
 	cout <<"Que quan: "<< QueQuan <<endl;
@@ -345,42 +342,18 @@ void SList::DeleteSV(){
 		size--;
 		cout <<"Da xoa xong~"<<endl;
 	}
-	
+		
 //====================dang lam dong` nay`============================
 }
 
 //ham tim kiem sinh vien theo ten
 void SList::SearchName(){
-	string x;
-	if( size == 0 ){
-		cout <<"Danh sach trong, khong the tim"<<endl;
-		return;
-	}
-	cout <<"Nhap ten can tim: ";
-	cin >> x;
-	Node *p = Head;
-	for(Node *p = Head; p != NULL; p = p->next ){
-		if( p->data.getHoTen() == x ){
-			p->data.Xuat();
-		}
-	}
+
 }
 
 //ham tim kiem sinh vien theo mssv
 void SList::SearchID(){
-	string x;
-	if( size == 0 ){
-		cout <<"Danh sach trong, khong the tim"<<endl;
-		return;
-	}
-	cout <<"Nhap ma so sinh vien can tim: ";
-	cin >> x;
-	Node *p = Head;
-	for(Node *p = Head; p != NULL; p = p->next ){
-		if( p->data.getMSSV()== x ){
-			p->data.Xuat();
-		}
-	}
+	
 }
 
 //ham sap xep sinh vien theo diem trung binh
@@ -400,19 +373,32 @@ void SList::XuatDS(){
 }
 
 //========================== ham main ============================
-
+//void resizeConsole(int width, int height)
+//{
+//	HWND console = GetConsoleWindow();
+//	RECT r;
+//	GetWindowRect(console, &r);
+//	MoveWindow(console, r.left, r.top, width, height, TRUE);
+//	
+//}
+//void textcolor(int x)
+//{
+//	HANDLE mau;
+//	mau=GetStdHandle(STD_OUTPUT_HANDLE);
+//	SetConsoleTextAttribute(mau, x);
+//}
 int main(){
+	
 	int n;
 	SList list ;
 	ThongTin sv;
-	
+	system("color 75");
 	while(true){
+		cout<<left<<setw(30)<<"ho va ten";
 		cout <<"======================================"<<endl;
 		cout <<"1. Nhap thong tin sv"<<endl;
 		cout <<"2. Xuat thong tin sv"<<endl;
 		cout <<"3. Xoa sinh vien"<<endl;
-		cout <<"4. Tim sinh vien theo ten"<<endl;
-		cout <<"5. Tim sinh vien theo ID"<<endl;
 		cout <<"======================================"<<endl;
 		cout <<"vui long chon: ";
 		cin >>n;
@@ -429,12 +415,6 @@ int main(){
 			list.DeleteSV();
 			break;
 		case 4:
-			list.SearchName();
-			break;
-		case 5:
-			list.SearchID();
-			break;
-		case 6:
 			exit(0);
 			break;
 	}
