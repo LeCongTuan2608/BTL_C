@@ -1,5 +1,6 @@
-
 #include<iostream>
+#include<windows.h>
+
 using namespace std;
 
 
@@ -56,11 +57,11 @@ float DiemSo::getDC(){
 
 //ham nhap diem 1 sinh vien
 void DiemSo::Nhap(){
-	cout <<"Diem trung binh: ";
+	cout <<"\t\tDiem trung binh: ";
 	cin >> DTB;
-	cout <<"Diem ren luyen: ";
+	cout <<"\t\tDiem ren luyen: ";
 	cin >> DRL;
-	cout <<"Diem cong: ";
+	cout <<"\t\tDiem cong: ";
 	cin >> DC;
 	cin.ignore();
 	
@@ -68,9 +69,9 @@ void DiemSo::Nhap(){
 
 //ham xuat diem 1 sinh vien
 void DiemSo::Xuat(){
-	cout <<"Diem trung binh: "<<DTB<<endl;
-	cout <<"Diem ren luyen: "<<DRL<<endl;	
-	cout <<"Diem cong: "<<DC<<endl;	
+	cout <<"\t\tDiem trung binh: "<<DTB<<endl;
+	cout <<"\t\tDiem ren luyen: "<<DRL<<endl;	
+	cout <<"\t\tDiem cong: "<<DC<<endl;	
 }
 //===================class nganh ============================
 class NGANH: public SinhVien{
@@ -101,15 +102,15 @@ NGANH::~NGANH(){
 }
 // ham nhap nganh vs khoa
 void NGANH::Nhap(){
-	cout <<"Nganh hoc: ";
+	cout <<"\t\tNganh hoc: ";
 	getline(cin, Nganh);
-	cout <<"Khoa: ";
+	cout <<"\t\tKhoa: ";
 	cin >> Khoa;
 }
 // ham xuat nganh vs khoa
 void NGANH::Xuat(){
-	cout <<"Nganh: "<<Nganh<<endl;
-	cout <<"Khoa: "<<Khoa<<endl;
+	cout <<"\t\tNganh: "<<Nganh<<endl;
+	cout <<"\t\tKhoa: "<<Khoa<<endl;
 }
 
 // ==================class thong tin======================
@@ -170,20 +171,20 @@ string ThongTin::getMSSV(){
 
 //ham nhap thong tin 1 sinh vien
 void ThongTin::Nhap(){
-	cout <<"Ho va ten: ";
+	cout <<"\t\tHo va ten: ";
 	getline(cin, HoTen);
-	cout <<"Ma so sinh vien: ";
+	cout <<"\t\tMa so sinh vien: ";
 	getline(cin, MSSV);
-	cout <<"Gioi tinh: ";
+	cout <<"\t\tGioi tinh: ";
 	getline(cin, GioiTinh);
-	cout <<"Que quan: ";
+	cout <<"\t\tQue quan: ";
 	getline(cin, QueQuan);
-	cout <<"Ngay sinh: "<<endl;
-	cout <<"Ngay ";
+	cout <<"\t\tNgay sinh: "<<endl;
+	cout <<"\t\tNgay ";
 	cin >> Ngay;
-	cout <<"Thang ";
+	cout <<"\t\tThang ";
 	cin >> Thang;
-	cout <<"Nam ";
+	cout <<"\t\tNam ";
 	cin >> Nam;
 	diemso.Nhap();
 	nganh.Nhap();
@@ -191,11 +192,12 @@ void ThongTin::Nhap(){
 }
 //ham xuat thong tin 1 sinh vien
 void ThongTin::Xuat(){
-	cout <<"\nHo va ten: "<<HoTen<<endl;
-	cout <<"Ma so sinh vien: "<<MSSV<<endl;
-	cout <<"Gioi tinh: "<< GioiTinh <<endl;
-	cout <<"Que quan: "<< QueQuan <<endl;
-	cout <<"Ngay sinh: "<<Ngay<<"-"<<Thang<<"-"<<Nam<<endl;
+	cout <<endl;
+	cout <<"\t\tHo va ten: "<<HoTen<<endl;
+	cout <<"\t\tMa so sinh vien: "<<MSSV<<endl;
+	cout <<"\t\tGioi tinh: "<< GioiTinh <<endl;
+	cout <<"\t\tQue quan: "<< QueQuan <<endl;
+	cout <<"\t\tNgay sinh: "<<Ngay<<"-"<<Thang<<"-"<<Nam<<endl;
 	diemso.Xuat();
 	nganh.Xuat();
 }
@@ -259,7 +261,7 @@ Node* SList::CreateNode(ThongTin sv){
 //ham them 1 sinh vien vao dau danh sach
 void SList::AddFirst(){
 	ThongTin sv;
-	cout <<"Nhap thong tin sinh vien";
+	cout <<"\t\tNHAP THONG TIN SINH VIEN";
 	sv.Nhap();
 	Node *p = CreateNode(sv);
 	p->next = Head;
@@ -271,7 +273,8 @@ void SList::AddFirst(){
 //ham them 1 sinh vien vao cuoi danh sach
 void SList::AddLast(){
 	ThongTin sv;
-	cout <<"Nhap thong tin sinh vien"<<endl;
+	cout<<endl;
+	cout <<"\t\tNHAP THONG TIN SINH VIEN"<<endl<<endl;;
 	sv.Nhap();
 	Node*p = CreateNode(sv);
 	if(Head == Tail && Head == NULL){
@@ -284,13 +287,14 @@ void SList::AddLast(){
 		Tail =p;
 	}
 }
+
 // ham xoa node dau tien
 void SList::DeleteFirst(){
 	Node *p = Head;
 	Head = Head->next;
 	delete p;
 	size--;
-	cout <<"Da xoa xong~"<<endl;
+	cout <<"\t\tDa xoa xong~"<<endl;
 }
 //ham xoa node cuoi
 void SList::DeleteLast(){
@@ -301,7 +305,7 @@ void SList::DeleteLast(){
 			Tail->next = NULL;
 			delete k;
 			size--;
-			cout <<"Da xoa xong~"<<endl;
+			cout <<"\t\tDa xoa xong~"<<endl;
 			return;
 		}
 		p = k;
@@ -319,10 +323,10 @@ bool SList::TimKiem(string id){
 void SList::DeleteSV(){
 	string x; 		// pos id can xoa
 	if(Head == Tail && Head == NULL){
-		cout <<"Danh sach rong, khong the xoa"<<endl;
+		cout <<"\t\tDanh sach rong, khong the xoa"<<endl;
 		return;
 	}
-	cout <<"Nhap ID can xoa: ";
+	cout <<"\t\tNhap ID can xoa: ";
 	cin >> x;
 	
 	if(Head->data.getMSSV() == x ){
@@ -341,14 +345,14 @@ void SList::DeleteSV(){
 			p->next = k->next; 
 			delete k; 
 			size--;
-			cout <<"Da xoa xong~"<<endl;
+			cout <<"\t\tDa xoa xong~"<<endl;
 			return;	
 		}
 		p = k; // p = k->next, chay tiep' vong` lap
 				// neu k = pos thi` lam` lenh if, luc' nay` p van~ la` node nam truoc k
 	}
 	if(TimKiem(x)){
-		cout <<"Khong tim thay sinh vien can xoa!"<<endl;
+		cout <<"\t\tKhong tim thay sinh vien can xoa!"<<endl;
 	}
 
 }
@@ -357,10 +361,10 @@ void SList::DeleteSV(){
 void SList::SearchName(){
 	string x;
 	if( size == 0 ){
-		cout <<"Danh sach trong, khong the tim"<<endl;
+		cout <<"\t\tDanh sach trong, khong the tim"<<endl;
 		return;
 	}
-	cout <<"Nhap ten can tim: ";
+	cout <<"\t\tNhap ten can tim: ";
 	cin >> x;
 	Node *p = Head;
 	for(Node *p = Head; p != NULL; p = p->next ){
@@ -374,10 +378,10 @@ void SList::SearchName(){
 void SList::SearchID(){
 	string x;
 	if( size == 0 ){
-		cout <<"Danh sach trong, khong the tim"<<endl;
+		cout <<"\t\tDanh sach trong, khong the tim"<<endl;
 		return;
 	}
-	cout <<"Nhap ma so sinh vien can tim: ";
+	cout <<"\t\tNhap ma so sinh vien can tim: ";
 	cin >> x;
 	for(Node *p = Head; p != NULL; p = p->next ){
 		if( p->data.getMSSV()== x ){
@@ -392,10 +396,16 @@ void SList::Updata(){
 	string x;
 	Node *p;
 		
-	cout <<"Nhap ID sinh vien can chinh sua:";
+	if ( Head == Tail && Head == NULL ){
+		cout <<"\t\t--> Dang sach rong, khong the chinh sua!!"<<endl;
+		return;
+	}
+			
+	cout <<"\t\tNhap ID sinh vien can chinh sua:";
 	cin >> x;
+
 	if(TimKiem(x)){
-		cout <<"Khong tim thay sinh vien!!"<<endl;
+		cout <<"\t\tKhong tim thay sinh vien!!"<<endl;
 	}
 	
 	if( Head->data.getMSSV() == x){
@@ -403,7 +413,7 @@ void SList::Updata(){
 		sv.Nhap();
 		p = Head;
 		p->data= sv;
-		cout <<"Da chinh sua~"<<endl;
+		cout <<"\t\tDa chinh sua~"<<endl;
 		return;
 	}
 	
@@ -412,7 +422,7 @@ void SList::Updata(){
 		sv.Nhap();
 		p = Tail;
 		p->data= sv;
-		cout <<"Da chinh sua~"<<endl;
+		cout <<"\t\tDa chinh sua~"<<endl;
 		return;
 	}
 	
@@ -421,7 +431,7 @@ void SList::Updata(){
 			cin.ignore();
 			sv.Nhap();
 			k->data = sv;
-			cout <<"Da chinh sua~"<<endl;
+			cout <<"\t\tDa chinh sua~"<<endl;
 			return;
 		}
 	}
@@ -431,46 +441,61 @@ void SList::Updata(){
 //ham sap xep sinh vien theo diem trung binh cao nhat
 void SList::SapXepDTB(){
 	for(Node *k = Head; k != NULL; k = k->next){
-		for(Node *t =k-> next; t != NULL; t = t->next)
-			if( k->data.getdiemso().getDTB() > t->data.getdiemso().getDTB() ){
+		for(Node *t = k->next; t != NULL; t = t->next){
+			if( k->data.getdiemso().getDTB() < t->data.getdiemso().getDTB() ){
 				swap( k->data, t->data );
 			}
+		}
 	}
-	cout <<"Da sap xep xong~"<<endl;
+	cout <<"\t\tDa sap xep xong~"<<endl;
 }
 
 //ham xuat ra danh sach sinh vien
 void SList::XuatDS(){
 	if(Head == Tail && Head == NULL){
-		cout <<"Danh sach trong, khong the hien thi"<<endl;
+		cout <<"\t\tDanh sach trong, khong the hien thi"<<endl;
 	}
-	
+	int i=0;
 	for(Node *p = Head; p != NULL ; p = p->next){
+		cout<<endl;
+		i++;
+		cout<<"\t\tTHONG TIN SINH VIEN THU "<<i;
 		p->data.Xuat();
 	}
 }
 
 //========================== ham main ============================
-
 int main(){
 	int n;
 	SList list ;
 	ThongTin sv;
-	
+	system("color 30");
 	while(true){
-		cout <<"=================== Quan Ly Sinh Vien ===================="<<endl;
-		cout <<"||		1. Nhap thong tin sv			||"<<endl;
-		cout <<"||		2. Chinh sua thong tin sinh vien 	||"<<endl;
-		cout <<"||		3. Xoa sinh vien			||"<<endl;
-		cout <<"||		4. Tim sinh vien theo ten		||"<<endl;
-		cout <<"||		5. Tim sinh vien theo ID		||"<<endl;
-		cout <<"||		6. Sap xep sinh vien theo DTB		||"<<endl;
-		cout <<"||		7. Xuat thong tin sv			||"<<endl;
-		cout <<"||		8. THOAT!!				||"<<endl;
-		cout <<"=========================================================="<<endl;
-		cout <<"vui long chon: ";
+		cout <<endl;
+		cout <<"\t\t==================== Quan Ly Sinh Vien ==================="<<endl;
+		cout <<"\t\t||		1. Nhap thong tin sinh vien		||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		2. Chinh sua thong tin sinh vien 	||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		3. Xoa sinh vien			||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		4. Tim sinh vien theo ten		||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		5. Tim sinh vien theo ID		||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		6. Sap xep sinh vien theo DTB		||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		7. Xuat thong tin sv			||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		8. THOAT!!				||"<<endl;
+		cout <<"\t\t=========================================================="<<endl;
+		cout <<"\t\t\t\tVui long chon: ";
 		cin >>n;
 		cin.ignore();
+		if( n< 1 || n >8 ){
+			cout <<endl;
+			cout <<"\t\t\tTHONG BAO: Chon sai, vui long chon lai !!!"<<endl;
+		}
 		
 	switch(n){
 		case 1:
