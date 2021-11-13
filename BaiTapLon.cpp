@@ -431,7 +431,7 @@ void SList::Updata(){
 //ham sap xep sinh vien theo diem trung binh cao nhat
 void SList::SapXepDTB(){
 	for(Node *k = Head; k != NULL; k = k->next){
-		for(Node *t = Head; t != NULL; t = t->next)
+		for(Node *t =k-> next; t != NULL; t = t->next)
 			if( k->data.getdiemso().getDTB() > t->data.getdiemso().getDTB() ){
 				swap( k->data, t->data );
 			}
