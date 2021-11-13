@@ -388,7 +388,43 @@ void SList::SearchID(){
 
 //  ham sinh sua thong tin sv
 void SList::Updata(){
-
+	ThongTin sv;
+	string x;
+	Node *p;
+		
+	cout <<"Nhap ID sinh vien can chinh sua:";
+	cin >> x;
+	if(TimKiem(x)){
+		cout <<"Khong tim thay sinh vien!!"<<endl;
+	}
+	
+	if( Head->data.getMSSV() == x){
+		cin.ignore();
+		sv.Nhap();
+		p = Head;
+		p->data= sv;
+		cout <<"Da chinh sua~"<<endl;
+		return;
+	}
+	
+	if( Tail->data.getMSSV() == x ){
+		cin.ignore();
+		sv.Nhap();
+		p = Tail;
+		p->data= sv;
+		cout <<"Da chinh sua~"<<endl;
+		return;
+	}
+	
+	for(Node *k = Head; k != NULL; k = k->next){
+		if( k->data.getMSSV() == x ){
+			cin.ignore();
+			sv.Nhap();
+			k->data = sv;
+			cout <<"Da chinh sua~"<<endl;
+			return;
+		}
+	}
 }
 
 
@@ -416,16 +452,16 @@ int main(){
 	ThongTin sv;
 	
 	while(true){
-		cout <<"======================================"<<endl;
-		cout <<"1. Nhap thong tin sv"<<endl;
-		cout <<"2. Chinh sua thong tin sinh vien "<<endl;
-		cout <<"3. Xoa sinh vien"<<endl;
-		cout <<"4. Tim sinh vien theo ten"<<endl;
-		cout <<"5. Tim sinh vien theo ID"<<endl;
-		cout <<"6. Sap xep sinh vien theo DTB"<<endl;
-		cout <<"7. Xuat thong tin sv"<<endl;
-		cout <<"8. THOAT!!"<<endl;
-		cout <<"======================================"<<endl;
+		cout <<"=================== Quan Ly Sinh Vien ===================="<<endl;
+		cout <<"||		1. Nhap thong tin sv			||"<<endl;
+		cout <<"||		2. Chinh sua thong tin sinh vien 	||"<<endl;
+		cout <<"||		3. Xoa sinh vien			||"<<endl;
+		cout <<"||		4. Tim sinh vien theo ten		||"<<endl;
+		cout <<"||		5. Tim sinh vien theo ID		||"<<endl;
+		cout <<"||		6. Sap xep sinh vien theo DTB		||"<<endl;
+		cout <<"||		7. Xuat thong tin sv			||"<<endl;
+		cout <<"||		8. THOAT!!				||"<<endl;
+		cout <<"=========================================================="<<endl;
 		cout <<"vui long chon: ";
 		cin >>n;
 		cin.ignore();
@@ -459,6 +495,7 @@ int main(){
 	}
 	return 0;
 }
+
 
 
 
