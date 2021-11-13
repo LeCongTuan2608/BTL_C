@@ -1,6 +1,6 @@
 #include<iostream>
 #include<windows.h>
-
+#include<iomanip>
 using namespace std;
 
 
@@ -69,9 +69,9 @@ void DiemSo::Nhap(){
 
 //ham xuat diem 1 sinh vien
 void DiemSo::Xuat(){
-	cout <<"\t\tDiem trung binh: "<<DTB<<endl;
-	cout <<"\t\tDiem ren luyen: "<<DRL<<endl;	
-	cout <<"\t\tDiem cong: "<<DC<<endl;	
+	cout <<"Diem trung binh: "<<setw(6) <<left <<DTB <<setw(6);
+	cout <<"\tDiem ren luyen: "<<setw(6) <<left <<DRL << setw(6);	
+	cout <<"\tDiem cong: "<<setw(7) <<left <<DC <<setw(7);	
 }
 //===================class nganh ============================
 class NGANH: public SinhVien{
@@ -109,8 +109,8 @@ void NGANH::Nhap(){
 }
 // ham xuat nganh vs khoa
 void NGANH::Xuat(){
-	cout <<"\t\tNganh: "<<Nganh<<endl;
-	cout <<"\t\tKhoa: "<<Khoa<<endl;
+	cout <<"\tNganh: "<< setw(15) <<left << Nganh;
+	cout <<"\tKhoa: "<< setw(10) <<left << Khoa <<endl;
 }
 
 // ==================class thong tin======================
@@ -193,13 +193,19 @@ void ThongTin::Nhap(){
 //ham xuat thong tin 1 sinh vien
 void ThongTin::Xuat(){
 	cout <<endl;
-	cout <<"\t\tHo va ten: "<<HoTen<<endl;
-	cout <<"\t\tMa so sinh vien: "<<MSSV<<endl;
-	cout <<"\t\tGioi tinh: "<< GioiTinh <<endl;
-	cout <<"\t\tQue quan: "<< QueQuan <<endl;
-	cout <<"\t\tNgay sinh: "<<Ngay<<"-"<<Thang<<"-"<<Nam<<endl;
+	cout<<"------------------------------------------------------------------------------------------------------------------------"<<endl;
+	cout <<endl;
+	cout <<"Ho va ten: "<<setw(15) <<left <<HoTen <<setw(15);
+	cout <<"Ma so sinh vien: "<<setw(10) <<MSSV <<setw(10);
+	cout <<"Gioi tinh: "<<setw(5) <<left << GioiTinh <<setw(5);
+	cout <<"Que quan: "<<setw(15) <<left << QueQuan <<setw(15);
+	cout <<"Ngay sinh: "<< Ngay <<"-"<< Thang <<"-"<<Nam <<endl;
+	cout <<endl;	
 	diemso.Xuat();
 	nganh.Xuat();
+	cout <<endl;
+	cout<<"------------------------------------------------------------------------------------------------------------------------"<<endl;
+
 }
 
 
@@ -459,7 +465,7 @@ void SList::XuatDS(){
 	for(Node *p = Head; p != NULL ; p = p->next){
 		cout<<endl;
 		i++;
-		cout<<"\t\tTHONG TIN SINH VIEN THU "<<i;
+		cout<<"\t\t\t\t\tTHONG TIN SINH VIEN THU "<<i;
 		p->data.Xuat();
 	}
 }
