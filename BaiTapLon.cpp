@@ -123,10 +123,12 @@ class ThongTin: public SinhVien{
 	public:
 		ThongTin();
 		~ThongTin();
+		
 		string getHoTen();
+		string getMSSV();
 		DiemSo getdiemso();
 		NGANH getnganh();
-		string getMSSV();
+
 		
 		void Nhap();
 		void Xuat();
@@ -223,6 +225,7 @@ class SList{
 		void AddFirst();
 		void AddLast();
 		
+		bool TimKiem(string id);
 		void DeleteFirst();
 		void DeleteLast();
 		void DeleteSV();
@@ -230,6 +233,7 @@ class SList{
 		void SearchName();
 		void SearchID();
 		
+		void Updata();
 		void SapXepDTB();
 		void XuatDS();
 				
@@ -303,36 +307,37 @@ void SList::DeleteLast(){
 		p = k;
 	}
 }
-
+bool SList::TimKiem(string id){
+	for(Node *k = Head; k != NULL; k = k->next){
+		if (k->data.getMSSV() == id){
+			return 0;
+		}
+	}
+	return 1;
+}
 //ham xoa 1 node bat ki
 void SList::DeleteSV(){
-	string pos; 		// pos id can xoa
+	string x; 		// pos id can xoa
 	if(Head == Tail && Head == NULL){
 		cout <<"Danh sach rong, khong the xoa"<<endl;
 		return;
 	}
 	cout <<"Nhap ID can xoa: ";
-	cin >> pos;
+	cin >> x;
 	
-//	bool check = false; // check dung hay sai
-//	for(Node *k = Head; k != NULL; k = k->next){
-//		if (check = true)
-//		cout <<"k tim thay"<<endl;
-//	}
-
-	if(Head->data.getMSSV() == pos ){
+	if(Head->data.getMSSV() == x ){
 		DeleteFirst();
 		return;
 	}
 	
-	if(Tail->data.getMSSV() == pos){
+	if(Tail->data.getMSSV() == x){
 		DeleteLast();
 		return;
 	}
 	
 	Node *p; //node *p: la node truoc node can xoa
 	for(Node *k = Head; k != NULL; k = k->next){
-		if( k->data.getMSSV() == pos ){
+		if( k->data.getMSSV() == x ){
 			p->next = k->next; 
 			delete k; 
 			size--;
@@ -342,6 +347,10 @@ void SList::DeleteSV(){
 		p = k; // p = k->next, chay tiep' vong` lap
 				// neu k = pos thi` lam` lenh if, luc' nay` p van~ la` node nam truoc k
 	}
+	if(TimKiem(x)){
+		cout <<"Khong tim thay sinh vien can xoa!"<<endl;
+	}
+
 }
 
 //ham tim kiem sinh vien theo ten
@@ -370,7 +379,6 @@ void SList::SearchID(){
 	}
 	cout <<"Nhap ma so sinh vien can tim: ";
 	cin >> x;
-	Node *p = Head;
 	for(Node *p = Head; p != NULL; p = p->next ){
 		if( p->data.getMSSV()== x ){
 			p->data.Xuat();
@@ -378,9 +386,15 @@ void SList::SearchID(){
 	}
 }
 
-//ham sap xep sinh vien theo diem trung binh
+//  ham sinh sua thong tin sv
+void SList::Updata(){
+
+}
+
+
+//ham sap xep sinh vien theo diem trung binh cao nhat
 void SList::SapXepDTB(){
-	
+
 }
 
 //ham xuat ra danh sach sinh vien
@@ -404,10 +418,13 @@ int main(){
 	while(true){
 		cout <<"======================================"<<endl;
 		cout <<"1. Nhap thong tin sv"<<endl;
-		cout <<"2. Xuat thong tin sv"<<endl;
+		cout <<"2. Chinh sua thong tin sinh vien "<<endl;
 		cout <<"3. Xoa sinh vien"<<endl;
 		cout <<"4. Tim sinh vien theo ten"<<endl;
 		cout <<"5. Tim sinh vien theo ID"<<endl;
+		cout <<"6. Sap xep sinh vien theo DTB"<<endl;
+		cout <<"7. Xuat thong tin sv"<<endl;
+		cout <<"8. THOAT!!"<<endl;
 		cout <<"======================================"<<endl;
 		cout <<"vui long chon: ";
 		cin >>n;
@@ -418,7 +435,7 @@ int main(){
 			list.AddLast();
 			break;
 		case 2:
-			list.XuatDS(); 
+			list.Updata(); 
 			break;
 		case 3:
 			list.DeleteSV();
@@ -430,13 +447,18 @@ int main(){
 			list.SearchID();
 			break;
 		case 6:
+			list.SapXepDTB();
+			break;
+		case 7:
+			list.XuatDS();
+			break;
+		case 8:
 			exit(0);
 			break;
 	}
 	}
 	return 0;
 }
-
 
 
 
