@@ -386,7 +386,7 @@ void SList::SearchID(){
 	}
 }
 
-//  ham sinh sua thong tin sv
+//  ham chinh sua thong tin sv
 void SList::Updata(){
 	ThongTin sv;
 	string x;
@@ -430,7 +430,13 @@ void SList::Updata(){
 
 //ham sap xep sinh vien theo diem trung binh cao nhat
 void SList::SapXepDTB(){
-
+	for(Node *k = Head; k != NULL; k = k->next){
+		for(Node *t = Head; t != NULL; t = t->next)
+			if( k->data.getdiemso().getDTB() > t->data.getdiemso().getDTB() ){
+				swap( k->data, t->data );
+			}
+	}
+	cout <<"Da sap xep xong~"<<endl;
 }
 
 //ham xuat ra danh sach sinh vien
