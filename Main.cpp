@@ -3,26 +3,28 @@
 #include<iomanip>
 #include "SList.h"
 #include "ToaDo.h"
+
 //========================== ham main ============================
 int main(){
 	int n;
 	SList list ;
 	ThongTin sv;
-	system("color 30");
-		gotoxy(20,5);
-		cout <<"                      #                     #";gotoxy(20,6);
-		cout <<"     @@@   @    @    @    @    @    @    @    @";gotoxy(20,7);
-		cout <<"    @   @  @    @   @ @   @ @  @    @     @  @";gotoxy(20,8);
-		cout <<"    @   @  @    @  @@@@@  @  @ @    @      @@";gotoxy(20,9);
-		cout <<"     @@@    @@@@  @     @ @   @@    @@@@   @";gotoxy(20,10);
-		gotoxy(18,11);
-		cout <<"                                            #";gotoxy(18,12);
-		cout <<"         #                                #   #";gotoxy(18,13);
-		cout <<"  @@@@@  @  @    @  @   @    @     @  @  @@@@@@  @    @";gotoxy(18,14);
-		cout <<" @@      @  @@   @  @   @    @     @  @  @       @@   @";gotoxy(18,15);
-		cout <<"   @@@   @  @  @ @  @@@@@     @   @   @  @@@@@@  @  @ @";gotoxy(18,16);
-		cout <<"     @@  @  @   @@  @   @      @ @    @  @       @   @@";gotoxy(18,17);
-		cout <<" @@@@@   @  @    @  @   @       @     @  @@@@@@  @    @";gotoxy(18,18);
+	ReSizeConsole (1100, 600);
+	system("color E2");
+		gotoxy(20,3);
+		cout <<"                      #                     #";gotoxy(20,4);
+		cout <<"     @@@   @    @    @    @    @    @    @    @";gotoxy(20,5);
+		cout <<"    @   @  @    @   @ @   @ @  @    @     @  @";gotoxy(20,6);
+		cout <<"    @   @  @    @  @@@@@  @  @ @    @      @@";gotoxy(20,7);
+		cout <<"     @@@    @@@@  @     @ @   @@    @@@@   @";gotoxy(20,8);
+		gotoxy(18,9);
+		cout <<"                                            #";gotoxy(18,10);
+		cout <<"         #                                #   #";gotoxy(18,11);
+		cout <<"  @@@@@  @  @    @  @   @    @     @  @  @@@@@@  @    @";gotoxy(18,12);
+		cout <<" @@      @  @@   @  @   @    @     @  @  @       @@   @";gotoxy(18,13);
+		cout <<"   @@@   @  @  @ @  @@@@@     @   @   @  @@@@@@  @  @ @";gotoxy(18,14);
+		cout <<"     @@  @  @   @@  @   @      @ @    @  @       @   @@";gotoxy(18,15);
+		cout <<" @@@@@   @  @    @  @   @       @     @  @@@@@@  @    @";gotoxy(18,16);
 	while(true){
 		cout <<endl;
 		cout <<"\t\t||******************************************************||"<<endl;
@@ -32,20 +34,18 @@ int main(){
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
 		cout <<"\t\t||		3. Xoa sinh vien			||"<<endl;
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
-		cout <<"\t\t||		4. Tim sinh vien theo ten		||"<<endl;
+		cout <<"\t\t||		4. Tim sinh vien theo ID		||"<<endl;
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
-		cout <<"\t\t||		5. Tim sinh vien theo ID		||"<<endl;
+		cout <<"\t\t||		5. Sap xep sinh vien theo DTB		||"<<endl;
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
-		cout <<"\t\t||		6. Sap xep sinh vien theo DTB		||"<<endl;
+		cout <<"\t\t||		6. Xuat thong tin sinh vien		||"<<endl;
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
-		cout <<"\t\t||		7. Xuat thong tin sv			||"<<endl;
-		cout <<"\t\t||------------------------------------------------------||"<<endl;
-		cout <<"\t\t||		8. THOAT!!				||"<<endl;
+		cout <<"\t\t||		7. THOAT!!				||"<<endl;
 		cout <<"\t\t||******************************************************||"<<endl;
 		cout <<"\t\t\t\tVui long chon: ";
 		cin >>n;
 		cin.ignore();
-		if( n< 1 || n >8 ){
+		if( n< 1 || n >7 ){
 			cout <<endl;
 			cout <<"\t\t\tTHONG BAO: Chon sai, vui long chon lai !!!"<<endl;
 		}
@@ -65,21 +65,17 @@ int main(){
 			break;
 		case 4:
 			system("cls");
-			list.SearchName();
+			list.SearchID();
 			break;
 		case 5:
 			system("cls");
-			list.SearchID();
+			list.SapXepDTB();
 			break;
 		case 6:
 			system("cls");
-			list.SapXepDTB();
-			break;
-		case 7:
-			system("cls");
 			list.XuatDS();
 			break;
-		case 8:
+		case 7:
 			exit(0);
 			break;
 	}

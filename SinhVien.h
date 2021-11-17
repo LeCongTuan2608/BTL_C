@@ -1,6 +1,7 @@
 #include<iostream>
 #include<windows.h>
 #include<iomanip>
+#include<string>
 
 using namespace std;
 
@@ -70,9 +71,9 @@ void DiemSo::Nhap(){
 
 //ham xuat diem 1 sinh vien
 void DiemSo::Xuat(){
-	cout <<"Diem trung binh: "<<setw(6) <<left <<DTB <<setw(6);
-	cout <<"\tDiem ren luyen: "<<setw(6) <<left <<DRL << setw(6);	
-	cout <<"\tDiem cong: "<<setw(7) <<left <<DC <<setw(7);	
+	cout <<setw(17) <<left <<"Diem trung binh: " <<setw(17) <<DTB ;
+	cout <<setw(16) <<left <<"Diem ren luyen: "  <<setw(16) <<DRL ;	
+	cout <<setw(11) <<left <<"Diem cong: " 		 <<setw(8) <<DC ;	
 }
 //===================class nganh ============================
 class NGANH: public SinhVien{
@@ -110,8 +111,8 @@ void NGANH::Nhap(){
 }
 // ham xuat nganh vs khoa
 void NGANH::Xuat(){
-	cout <<"\tNganh: "<< setw(15) <<left << Nganh;
-	cout <<"\tKhoa: "<< setw(10) <<left << Khoa <<endl;
+	cout <<setw(7)  <<left  <<"Nganh: "<< setw(29) <<left  << Nganh;
+	cout <<setw(6) <<left  <<"Khoa: " << setw(3)  <<left  <<Khoa <<endl;
 }
 
 // ==================class thong tin======================
@@ -194,18 +195,18 @@ void ThongTin::Nhap(){
 //ham xuat thong tin 1 sinh vien
 void ThongTin::Xuat(){
 	cout <<endl;
-	cout<<"------------------------------------------------------------------------------------------------------------------------"<<endl;
+	cout<<"------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
 	cout <<endl;
-	cout <<"Ho va ten: "<<setw(15) <<left <<HoTen <<setw(15);
-	cout <<"Ma so sinh vien: "<<setw(10) <<MSSV <<setw(10);
-	cout <<"Gioi tinh: "<<setw(5) <<left << GioiTinh <<setw(5);
-	cout <<"Que quan: "<<setw(15) <<left << QueQuan <<setw(15);
-	cout <<"Ngay sinh: "<< Ngay <<"-"<< Thang <<"-"<<Nam <<endl;
+	cout <<setw(11) <<left <<"Ho va ten: "       <<setw(23) <<left  <<HoTen;
+	cout <<setw(17) <<left <<"Ma so sinh vien: " <<setw(15) <<left <<MSSV;
+	cout <<setw(5)  <<left <<"Gioi tinh: "       <<setw(8)  <<left << GioiTinh  ;
+	cout <<setw(10) <<left <<"Que quan: "        <<setw(20) <<left << QueQuan ;
+	cout <<setw(11) <<left <<"Ngay sinh: " <<setw(2) <<Ngay <<setw(1) <<"-" <<setw(2)<< Thang <<setw(1) <<"-"<<setw(4) <<Nam <<endl;
 	cout <<endl;	
 	diemso.Xuat();
 	nganh.Xuat();
 	cout <<endl;
-	cout<<"------------------------------------------------------------------------------------------------------------------------"<<endl;
+	cout<<"------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
 
 }
 

@@ -160,24 +160,6 @@ void SList::DeleteSV(){
 
 }
 
-//ham tim kiem sinh vien theo ten
-void SList::SearchName(){
-	string x;
-	cout<<endl;
-	if( size == 0 ){
-		cout <<"\t\tDanh sach trong, khong the tim"<<endl;
-		return;
-	}
-	cout <<"\t\tNhap ten can tim: ";
-	cin >> x;
-	Node *p = Head;
-	for(Node *p = Head; p != NULL; p = p->next ){
-		if( p->data.getHoTen() == x ){
-			p->data.Xuat();
-		}
-	}
-}
-
 //ham tim kiem sinh vien theo mssv
 void SList::SearchID(){
 	string x;
