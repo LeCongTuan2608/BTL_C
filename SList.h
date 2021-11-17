@@ -62,6 +62,7 @@ Node* SList::CreateNode(ThongTin sv){
 //ham them 1 sinh vien vao dau danh sach
 void SList::AddFirst(){
 	ThongTin sv;
+	cout<<endl;
 	cout <<"\t\tNHAP THONG TIN SINH VIEN";
 	sv.Nhap();
 	Node *p = CreateNode(sv);
@@ -123,6 +124,7 @@ bool SList::TimKiem(string id){
 //ham xoa 1 node bat ki
 void SList::DeleteSV(){
 	string x; 		// pos id can xoa
+	cout<<endl;
 	if(Head == Tail && Head == NULL){
 		cout <<"\t\tDanh sach rong, khong the xoa"<<endl;
 		return;
@@ -161,6 +163,7 @@ void SList::DeleteSV(){
 //ham tim kiem sinh vien theo ten
 void SList::SearchName(){
 	string x;
+	cout<<endl;
 	if( size == 0 ){
 		cout <<"\t\tDanh sach trong, khong the tim"<<endl;
 		return;
@@ -178,6 +181,7 @@ void SList::SearchName(){
 //ham tim kiem sinh vien theo mssv
 void SList::SearchID(){
 	string x;
+	cout<<endl;
 	if( size == 0 ){
 		cout <<"\t\tDanh sach trong, khong the tim"<<endl;
 		return;
@@ -196,9 +200,9 @@ void SList::Updata(){
 	ThongTin sv;
 	string x;
 	Node *p;
-		
+	cout<<endl;	
 	if ( Head == Tail && Head == NULL ){
-		cout <<"\t\t--> Dang sach rong, khong the chinh sua!!"<<endl;
+		cout <<"\t\tDang sach rong, khong the chinh sua!!"<<endl;
 		return;
 	}
 			
@@ -241,6 +245,12 @@ void SList::Updata(){
 
 //ham sap xep sinh vien theo diem trung binh cao nhat
 void SList::SapXepDTB(){
+	cout<<endl;
+	if ( Head == Tail && Head == NULL ){
+		cout <<"\t\tDang sach rong, khong the sap xep!!"<<endl;
+		return;
+	}
+	
 	for(Node *k = Head; k != NULL; k = k->next){
 		for(Node *t = k->next; t != NULL; t = t->next){
 			if( k->data.getdiemso().getDTB() < t->data.getdiemso().getDTB() ){
@@ -253,6 +263,7 @@ void SList::SapXepDTB(){
 
 //ham xuat ra danh sach sinh vien
 void SList::XuatDS(){
+	cout<<endl;
 	if(Head == Tail && Head == NULL){
 		cout <<"\t\tDanh sach trong, khong the hien thi"<<endl;
 	}
