@@ -7,7 +7,7 @@ using namespace std;
 
 //============================= class node ==============================
 class Node{
-	private:
+	public:
 		ThongTin data;
 		Node *next;
 	public:
@@ -78,6 +78,7 @@ void SList::AddLast(){
 	cout<<endl;
 	cout <<"\t\tNHAP THONG TIN SINH VIEN"<<endl<<endl;;
 	sv.Nhap();
+	GhiFile(sv);
 	Node*p = CreateNode(sv);
 	if(Head == Tail && Head == NULL){
 		Tail = Head = p;
@@ -245,6 +246,7 @@ void SList::SapXepDTB(){
 
 //ham xuat ra danh sach sinh vien
 void SList::XuatDS(){
+	ThongTin sv;
 	cout<<endl;
 	if(Head == Tail && Head == NULL){
 		cout <<"\t\tDanh sach trong, khong the hien thi"<<endl;
@@ -257,3 +259,6 @@ void SList::XuatDS(){
 		p->data.Xuat();
 	}
 }
+
+
+

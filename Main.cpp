@@ -2,8 +2,8 @@
 #include<windows.h>
 #include<iomanip>
 #include "SList.h"
-#include "ToaDo.h"
-
+#include "GiaoDien.h"
+#include<fstream>
 //========================== ham main ============================
 int main(){
 	int n;
@@ -74,6 +74,7 @@ int main(){
 		case 6:
 			system("cls");
 			list.XuatDS();
+			Beep(700,700); 
 			break;
 		case 7:
 			exit(0);

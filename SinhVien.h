@@ -2,7 +2,7 @@
 #include<windows.h>
 #include<iomanip>
 #include<string>
-
+#include<fstream>
 using namespace std;
 
 
@@ -93,6 +93,12 @@ class NGANH: public SinhVien{
 		void Nhap();
 		void Xuat();	
 };
+string NGANH::getNganh(){
+	return Nganh;
+}
+int NGANH::getKhoa(){
+	return Khoa;
+}
 // ham tao
 NGANH::NGANH(){
 	Nganh = " ";
@@ -129,6 +135,11 @@ class ThongTin: public SinhVien{
 		
 		string getHoTen();
 		string getMSSV();
+		string getGioiTinh();
+		string getQueQuan();
+		int getNgay();
+		int getThang();
+		int getNam();
 		DiemSo getdiemso();
 		NGANH getnganh();
 
@@ -155,6 +166,21 @@ ThongTin::~ThongTin(){
 //return ve ho ten
 string ThongTin::getHoTen(){
 	return HoTen;
+}
+string ThongTin::getGioiTinh(){
+	return GioiTinh;
+}
+string ThongTin::getQueQuan(){
+	return QueQuan;
+}
+int ThongTin::getNgay(){
+	return Ngay;
+}
+int ThongTin::getThang(){
+	return Thang;
+}
+int ThongTin::getNam(){
+	return Nam;
 }
 // return ve class diem so
 DiemSo ThongTin::getdiemso(){
@@ -190,8 +216,8 @@ void ThongTin::Nhap(){
 	cin >> Nam;
 	diemso.Nhap();
 	nganh.Nhap();
-
 }
+
 //ham xuat thong tin 1 sinh vien
 void ThongTin::Xuat(){
 	cout <<endl;
@@ -208,5 +234,37 @@ void ThongTin::Xuat(){
 	cout <<endl;
 	cout<<"------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
 
+}
+void GhiFile(ThongTin& sv){
+	fstream FILE; // khai bao kieu du lieu 
+
+	if (!FILE.eof()){ //kiem tra xem da co file hay chua, neu chua thi tao 1 file moi
+		FILE.open("SinhVien.txt", ios::app);  // che do ghi vao cuoi file
+
+			FILE <<"Ho va ten: "<<sv.getHoTen() <<endl;
+			FILE <<"MSSV: "<<sv.getMSSV() <<endl;;
+			FILE <<"Gioi tinh: "<<sv.getGioiTinh()<<endl;
+			FILE <<"Que quan: "<<sv.getQueQuan()<<endl;
+			FILE <<"Ngay sinh: "<<sv.getNgay()<<"-"<<sv.getThang()<<"-"<<sv.getNam()<<endl;
+			FILE <<"DTB: "<<sv.getdiemso().getDTB()<<"     DRL: "<<sv.getdiemso().getDRL()<<"     DC: "<<sv.getdiemso().getDC()<<endl;
+			FILE <<"Nganh: "<<sv.getnganh().getNganh()<<"     Khoa: "<<sv.getnganh().getKhoa()<<endl;
+			FILE.seekp(1);
+			FILE << endl;
+	}
+	else{
+	FILE.open("SinhVien.txt", ios::out);
+
+		FILE <<"Ho va ten: "<<sv.getHoTen() <<endl;
+		FILE <<"MSSV: "<<sv.getMSSV() <<endl;;
+		FILE <<"Gioi tinh: "<<sv.getGioiTinh()<<endl;
+		FILE <<"Que quan: "<<sv.getQueQuan()<<endl;
+		FILE <<"Ngay sinh: "<<sv.getNgay()<<"-"<<sv.getThang()<<"-"<<sv.getNam()<<endl;
+		FILE <<"DTB: "<<sv.getdiemso().getDTB()<<"DRL: "<<sv.getdiemso().getDRL()<<"DC: "<<sv.getdiemso().getDC()<<endl;
+		FILE <<"Nganh: "<<sv.getnganh().getNganh()<<"Khoa: "<<sv.getnganh().getKhoa()<<endl;
+		FILE.seekp(1);
+		FILE << endl;
+	}
+	
+	FILE.close(); // dong file
 }
 
