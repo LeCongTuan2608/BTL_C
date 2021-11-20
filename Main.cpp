@@ -40,7 +40,9 @@ int main(){
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
 		cout <<"\t\t||		6. Xuat thong tin sinh vien		||"<<endl;
 		cout <<"\t\t||------------------------------------------------------||"<<endl;
-		cout <<"\t\t||		7. THOAT!!				||"<<endl;
+		cout <<"\t\t||		7. Ghi thong tin vào File		||"<<endl;
+		cout <<"\t\t||------------------------------------------------------||"<<endl;
+		cout <<"\t\t||		8. THOAT!!				||"<<endl;
 		cout <<"\t\t||******************************************************||"<<endl;
 		cout <<"\t\t\t\tVui long chon: ";
 		cin >>n;
@@ -77,6 +79,10 @@ int main(){
 			Beep(700,700); 
 			break;
 		case 7:
+			system("cls");
+			list.GhiFile();
+			break;
+		case 8:
 			exit(0);
 			break;
 	}

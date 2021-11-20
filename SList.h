@@ -39,7 +39,7 @@ class SList{
 		void Updata();
 		void SapXepDTB();
 		void XuatDS();
-				
+		void GhiFile();	
 };
 
 //ham tao mac dinh
@@ -78,7 +78,6 @@ void SList::AddLast(){
 	cout<<endl;
 	cout <<"\t\tNHAP THONG TIN SINH VIEN"<<endl<<endl;;
 	sv.Nhap();
-	GhiFile(sv);
 	Node*p = CreateNode(sv);
 	if(Head == Tail && Head == NULL){
 		Tail = Head = p;
@@ -258,6 +257,52 @@ void SList::XuatDS(){
 		cout<<"\t\t\t\t\tTHONG TIN SINH VIEN THU "<<i;
 		p->data.Xuat();
 	}
+}
+void SList::GhiFile(){
+	ThongTin sv;
+	fstream FILE; // khai bao kieu du lieu 
+	if (!FILE.eof()){ //kiem tra xem da co file hay chua, neu chua thi tao 1 file moi
+		FILE.open("SinhVien.txt", ios::app);  // che do ghi vao cuoi file
+		if ( Head == Tail && Head == NULL ){
+			cout <<endl;
+			cout <<"\t\t\tDang sach rong, khong the ghi vao file !!!"<<endl;
+		}
+		for(Node *p = Head; p != NULL ; p = p->next){
+			FILE <<"Ho va ten: "<< p->data.getHoTen()<<endl;
+			FILE <<"MSSV: "<<p->data.getMSSV() <<endl;;
+			FILE <<"Gioi tinh: "<<p->data.getGioiTinh()<<endl;
+			FILE <<"Que quan: "<<p->data.getQueQuan()<<endl;
+			FILE <<"Ngay sinh: "<<p->data.getNgay()<<"-"<<p->data.getThang()<<"-"<<p->data.getNam()<<endl;
+			FILE <<"DTB: "<<p->data.getdiemso().getDTB()<<"     DRL: "<<p->data.getdiemso().getDRL()<<"     DC: "<<p->data.getdiemso().getDC()<<endl;
+			FILE <<"Nganh: "<<p->data.getnganh().getNganh()<<"     Khoa: "<<p->data.getnganh().getKhoa()<<endl;
+			FILE.seekp(1);
+			FILE << endl;
+			cout <<endl;
+			cout <<"\t\t\t\tDa ghi vao file !!!"<<endl;;
+		}
+	}
+	else{
+	FILE.open("SinhVien.txt", ios::out);
+		if ( Head == Tail && Head == NULL ){
+			cout <<endl;
+			cout <<"\t\t\tDang sach rong, khong the ghi vao file !!!"<<endl;
+		}
+		for(Node *p = Head; p != NULL ; p = p->next){
+			FILE <<"Ho va ten: "<< p->data.getHoTen()<<endl;
+			FILE <<"MSSV: "<<p->data.getMSSV() <<endl;;
+			FILE <<"Gioi tinh: "<<p->data.getGioiTinh()<<endl;
+			FILE <<"Que quan: "<<p->data.getQueQuan()<<endl;
+			FILE <<"Ngay sinh: "<<p->data.getNgay()<<"-"<<p->data.getThang()<<"-"<<p->data.getNam()<<endl;
+			FILE <<"DTB: "<<p->data.getdiemso().getDTB()<<"     DRL: "<<p->data.getdiemso().getDRL()<<"     DC: "<<p->data.getdiemso().getDC()<<endl;
+			FILE <<"Nganh: "<<p->data.getnganh().getNganh()<<"     Khoa: "<<p->data.getnganh().getKhoa()<<endl;
+			FILE.seekp(1);
+			FILE << endl;
+			cout <<endl;
+			cout <<"\t\t\t\tDa ghi vao file !!!"<<endl;
+		}
+	}
+	
+	FILE.close(); // dong file
 }
 
 

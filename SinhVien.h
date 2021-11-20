@@ -49,9 +49,11 @@ DiemSo::~DiemSo(){
 float DiemSo::getDTB(){
 	return DTB;
 }
+
 //ham tra ve drl
 float DiemSo::getDRL(){
 	return DRL;
+	
 }//ham tra ve dc
 float DiemSo::getDC(){
 	return DC;
@@ -234,37 +236,5 @@ void ThongTin::Xuat(){
 	cout <<endl;
 	cout<<"------------------------------------------------------------------------------------------------------------------------------------------"<<endl;
 
-}
-void GhiFile(ThongTin& sv){
-	fstream FILE; // khai bao kieu du lieu 
-
-	if (!FILE.eof()){ //kiem tra xem da co file hay chua, neu chua thi tao 1 file moi
-		FILE.open("SinhVien.txt", ios::app);  // che do ghi vao cuoi file
-
-			FILE <<"Ho va ten: "<<sv.getHoTen() <<endl;
-			FILE <<"MSSV: "<<sv.getMSSV() <<endl;;
-			FILE <<"Gioi tinh: "<<sv.getGioiTinh()<<endl;
-			FILE <<"Que quan: "<<sv.getQueQuan()<<endl;
-			FILE <<"Ngay sinh: "<<sv.getNgay()<<"-"<<sv.getThang()<<"-"<<sv.getNam()<<endl;
-			FILE <<"DTB: "<<sv.getdiemso().getDTB()<<"     DRL: "<<sv.getdiemso().getDRL()<<"     DC: "<<sv.getdiemso().getDC()<<endl;
-			FILE <<"Nganh: "<<sv.getnganh().getNganh()<<"     Khoa: "<<sv.getnganh().getKhoa()<<endl;
-			FILE.seekp(1);
-			FILE << endl;
-	}
-	else{
-	FILE.open("SinhVien.txt", ios::out);
-
-		FILE <<"Ho va ten: "<<sv.getHoTen() <<endl;
-		FILE <<"MSSV: "<<sv.getMSSV() <<endl;;
-		FILE <<"Gioi tinh: "<<sv.getGioiTinh()<<endl;
-		FILE <<"Que quan: "<<sv.getQueQuan()<<endl;
-		FILE <<"Ngay sinh: "<<sv.getNgay()<<"-"<<sv.getThang()<<"-"<<sv.getNam()<<endl;
-		FILE <<"DTB: "<<sv.getdiemso().getDTB()<<"DRL: "<<sv.getdiemso().getDRL()<<"DC: "<<sv.getdiemso().getDC()<<endl;
-		FILE <<"Nganh: "<<sv.getnganh().getNganh()<<"Khoa: "<<sv.getnganh().getKhoa()<<endl;
-		FILE.seekp(1);
-		FILE << endl;
-	}
-	
-	FILE.close(); // dong file
 }
 
